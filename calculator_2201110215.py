@@ -2,20 +2,16 @@ import tkinter as tk
 import tkinter.messagebox as msgbox
 
 root = tk.Tk()
-root.resizable(False, False)
-root.title('2201110215')
+root.resizable(0, 0)
+root.title('AISW계산기[2201110215]')
 
 
 
-display_val = 0
-suv_val = ''
+num_result = tk.Entry(root, width = 50, justify = 'right', bg = 'white', fg = 'red')
+num_result.grid(row = 0, column = 0, columnspan = 1, padx = 22, pady = 10, ipadx = 0, ipady = 40)
 
-str_value = tk.StringVar()
-str_value.set(str(display_val))
-
-entry = tk.Entry(root, state = 'readonly', textvariable = str_value, justiry = 'right')
-entry.grid(row = 0, column = 0; columnspan = 4, ipadx = 80, ipady = 30)
-
+num_process = tk.Entry(root, justify = 'right', bg = 'white', fg = 'red')
+num_process.grid(row = 1, column = 2, columnspan = 2, ipadx = 0, ipady = 20)
 
 
 
