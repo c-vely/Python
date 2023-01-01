@@ -1,0 +1,65 @@
+
+*** Example 43. (p.97)
+--------------------------------------------------------------------
+"""
+Example43.동영상 파일 활용
+"""
+
+
+import cv2 as cv
+
+cap = cv.VideoCapture("video7.mp4")
+
+while cap.isOpened():
+    success, frame = cap.read()
+    if success:
+        cv.imshow('window', frame)
+
+        key = cv.waitKey(1) & 0xFF
+
+        '''  이거 넣으면 안 됨
+        if(key == 27):
+            break
+        else:
+            break
+        '''
+
+cap.release()
+cv.destroyAllWindows()
+--------------------------------------------------------------------
+
+
+
+
+*** Example 43-other
+--------------------------------------------------------------------
+import cv2
+
+capture = cv2.VideoCapture("video7.mp4")
+
+while cv2.waitKey(33) < 0:
+    if capture.get(cv2.CAP_PROP_POS_FRAMES) == capture.get(cv2.CAP_PROP_FRAME_COUNT):
+        capture.set(cv2.CAP_PROP_POS_FRAMES, 0)
+
+    ret, frame = capture.read()
+    cv2.imshow("VideoFrame", frame)
+
+capture.release()
+cv2.destroyAllWindows()
+--------------------------------------------------------------------
+
+<문제>
+1. 영상 실행 안됨  ---> 코덱 때문인 거 같음
+
+<해결>
+1. ffmpeg 설치    https://dataanalytics.tistory.com/entry/%ED%8C%8C%EC%9D%B4%EC%8D%AC-ffmpeg-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C-cv2-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EB%8F%99%EC%98%81%EC%83%81-%EB%B3%80%ED%99%98
+                       https://digital-play.tistory.com/104
+                       https://itsjh.tistory.com/44
+                       https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=nieah914&logNo=221561721146
+                       https://hello-bryan.tistory.com/230
+
+
+
+
+* 참고
+- cmd 관리자 모드 실행   https://kimsungjin.tistory.com/471

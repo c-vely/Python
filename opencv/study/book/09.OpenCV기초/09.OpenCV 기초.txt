@@ -1,0 +1,80 @@
+**** PyCharm 설치
+- https://www.jetbrains.com/pycharm/
+
+
+* 참고
+- 파이참 설정   https://dora-guide.com/pycharm-install/
+
+
+
+*** OpenCV 설치
+
+<문제>
+1. vs code ModuleNotFoundError: No module named 'cv2'
+
+<참고>
+- https://www.google.com/search?q=vs+code+ModuleNotFoundError%3A+No+module+named+%27cv2%27&oq=vs+code+ModuleNotFoundError%3A+No+module+named+%27cv2%27&aqs=chrome..69i57.2237j0j15&sourceid=chrome&ie=UTF-8
+
+
+* 참고
+- 파이썬 opencv 설치   https://jerry-style.tistory.com/entry/%ED%8C%8C%EC%9D%B4%EC%8D%AC-opencv-%EC%84%A4%EC%B9%98%ED%95%98%EA%B3%A0-%ED%85%8C%EC%8A%A4%ED%8A%B8%ED%95%98%EA%B8%B0?category=959937
+
+
+
+
+
+*** Example 41. (p.93)
+--------------------------------------------------------------------
+"""
+Example41.그림 출력
+"""
+
+import cv2 as cv
+
+
+img = cv.imread("img1.jpg", 1)
+cv.namedWindow("image")
+cv.imshow("image", img)
+cv.waitKey()
+--------------------------------------------------------------------
+
+
+
+*** Example 42. (p.95)
+--------------------------------------------------------------------
+"""
+Example42.그림 출력 + 십자가 표시
+"""
+
+import numpy as np
+import cv2 as cv
+
+
+img = cv.imread("img1.jpg", 1)
+
+height = img.shape[0]
+width = img.shape[1]
+
+for y in range(0, height):
+    img.itemset(y, int(width/2), 0, 0)
+    img.itemset(y, int(width/2), 1, 0)
+    img.itemset(y, int(width/2), 2, 255)
+for x in range(0, width):
+    img.itemset(int(height/2), x, 0, 255)
+    img.itemset(int(height/2), x, 1, 0)
+    img.itemset(int(height/2), x, 2, 0)
+cv.imshow('win', img)
+cv.waitKey(0)
+--------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+* 참고
+- 파이참 단축키   https://py-son.tistory.com/2
+- OpenCV 강좌   https://076923.github.io/posts/Python-opencv-1/
