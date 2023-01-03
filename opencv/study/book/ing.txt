@@ -12,6 +12,8 @@
 
 * 설치 방법
 - 아나콘다 가상환경 생성 및 OpenCV 설치   https://reallyai.net/opencv_install/
+
+
 - 아나콘다 내비게이션으로 설치   https://m.blog.naver.com/h0dadak/222895821395   ---> 안 됨!! 아놔~~~
 - 아나콘다 프롬프트에서 설치    https://blog.naver.com/kin4057/222208110461
 - cmd에서 설치   https://blog.naver.com/a7343/222126228530
