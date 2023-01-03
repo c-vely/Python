@@ -74,7 +74,6 @@ cv.waitKey(0)
 
 
 
-
 * 참고
 - 파이참 단축키   https://py-son.tistory.com/2
 - OpenCV 강좌   https://076923.github.io/posts/Python-opencv-1/
