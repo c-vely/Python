@@ -1,0 +1,59 @@
+[라즈베리파이 OS] 
+
+- 보드 : 라즈베리파이 4.0    https://wikidocs.net/3254
+- OS window 다운로드    https://www.raspberrypi.com/software/
+
+
+<설치>
+- 보드의 sd카드 > 리더기에 넣고 > 컴퓨터 usb 포트에 삽입
+- 설치 > 라즈베리파이 설치 창 > 운영체제 : RASPBERRY PI OS (32-BIT) / 저장소 : 맨 위 > 쓰기 > 계속  > 포맷 x
+
+
+<연결>
+- SD카드 > 보드에 삽입 
+- 컴퓨터 HDMI에 HDMI 케이블 연결 > 보드에 MicroHDMI에 MicroHDMI 케이블 연결 
+- 보드 usb2.0 포트에 키보드, 마우스 USB케이블 연결
+- 전원선 C 타입 포트 연결 > 모니터 켜기 > 상태창 > YES > 한국 / 서울 > USERNAME : mecha / PASSWORD : 123456789 > 네트워크 연결 : SEOUL > 완료
+
+
+<한글 패치 설치>
+- 설치 방법    https://fishpoint.tistory.com/7249 (폰트 설치 없음, 아래 추가 확인)
+                  https://velog.io/@thdusdl4767/Raspberry-Pi-Raspberry-Pi-%ED%95%9C%EA%B8%80-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EC%84%A4%EC%B9%98
+                  https://andjjip.tistory.com/86 (추가 방법)
+
+
+<GPIO>
+- 핀 소개    https://fishpoint.tistory.com/7687
+
+<입출력 확인>
+- 라즈 OS 에서 shutdown > 전원선 뽑기
+- 저항 (적적흑흑 : 220옴) 사용 > 브레드 보드 25 -에 저항 한쪽 연결 + 25c 에 다른 한쪽 연결 > LED 짧은쪽 25e 연결 + 긴쪽 21e 연결
+- 점퍼케이블 흰, 검 준비 > 핀7에 흰색선 연결 + 핀9에 검은선 연결 > 반대쪽 검은선 빵판 - 암때나 꽂기 + 흰선 반대쪽 21번 암때나 꽂기
+- 다시 전원 연결 > OS / 개발 / Thony 실행 >  코드 입력
+
+-------------------------------------------------
+from gpiozero import LED
+from time import sleep
+
+led = LED(4)
+
+while True:
+	led.on()
+	sleep(1)
+	led.off()
+	sleep(1)
+
+--------------------------------------------------
+
+- save > 이름 저장 > Debug > Into > LED 깜빡거림
+
+
+
+
+[참고]
+
+<보드>
+- https://blog.naver.com/PostView.naver?blogId=roboholic84&logNo=221629734542&redirect=Dlog&widgetTypeCall=true&directAccess=false
+
+<설치>
+- 참고    https://zifmfmphantom.tistory.com/113

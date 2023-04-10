@@ -1,0 +1,21 @@
+[sckit learn]
+
+- Toy datasets    https://scikit-learn.org/stable/datasets.html
+
+
+*** p.88
+
+1.
+
+2.
+
+3.
+
+4.
+
+
+
+[참고]
+- 인덱싱      https://data-jj.tistory.com/8
+- iris 분류    https://dschloe.github.io/python/python_edu/04_machinelearning/chapter_4_4_classification_iris_example/
+
