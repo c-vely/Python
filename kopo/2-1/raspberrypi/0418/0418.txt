@@ -1,0 +1,15 @@
+[opencv]
+
+* Image read & show
+
+
+* sobel filter (엣지검출)
+
+- 참고    https://bebeyum.tistory.com/30
+           https://docs.opencv.org/3.4/d2/d2c/tutorial_sobel_derivatives.html
+
+
+* Video
+
+
+* Teacherble mechine

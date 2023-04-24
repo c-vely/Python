@@ -1,0 +1,28 @@
+[실험보고서]
+- 저번시간 작업한 거 정리해서 작성
+
+
+
+[통신]
+- 풀 듀플렉스 : ex) USART, UART
+- 하프 듀플렉스 : ex) usb
+
+- CAN : 특정 영역 통신망 ex) 차안 
+
+* 라즈베리에서는 아래 2개 사용
+- SPI : 풀 디플렉스, Data In(MISO) / Data Out(MOSI) / CLK
+- I2C : 하프 디플렉스, Data / CLK
+
+* 참고
+- USART vs UART    https://shek.tistory.com/42
+- Full Duplex, Half Duplex    https://hydroponicglass.tistory.com/280
+
+
+
+[PCF8591]
+- 데이터시트    https://www.alldatasheet.co.kr/datasheet-pdf/pdf_kor/424367/PHILIPS/PCF8591.html
+- 
+
+
+* 참고
+- PCF8591(ADC/DAC Module)    https://blog.naver.com/PostView.naver?blogId=tiled12&logNo=221791735227&parentCategoryNo=&categoryNo=31&viewDate=&isShowPopularPosts=true&from=search

@@ -1,0 +1,23 @@
+* ftp 서버 설치
+- install > vsftpd.conf 파일에서 6개 주석 삭제 > vsftpd.chroot_list 에 bready 입력 > 재시작 > 자동실행
+- \\192.168.24.251 > filezilla 설치 > 실행 deny / 다른 건 그대로 두고 설치 완료 
+- filezilla > 호스트 :192.168.25.111 / 사용자명 : bready / 비밀번호 : 00000000 > 빠른연결
+- 내 컴퓨터와 라즈베리파이 연결됨
+
+- local > switch.c 파일 다운 > bready/aisw 에 복붙 > 콘솔창 > cd aisw > gcc -o switch1 switch.c -lwiringPi > ./switch1 > 실행 됨
+
+
+
+* 온습도 센서
+
+1. 습도 센서
+2. 온도 센서
+
+
+* 초음파 센서
+
+
+* buzzer
+
+
+*

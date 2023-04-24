@@ -1,0 +1,8 @@
+[클래스]
+
+* 참고
+<오류>
+1. takes 0 positional arguments but 1 was given
+
+<해결>
+1. https://power-of-optimism.tistory.com/41
