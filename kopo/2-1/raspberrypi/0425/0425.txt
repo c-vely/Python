@@ -1,0 +1,3 @@
+[오류]
+
+- cv2 /lib/aarch64-linux-gnu/libgldispatch.so.0: cannot allocate memory in static tls block

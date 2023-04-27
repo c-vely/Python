@@ -1,0 +1,2 @@
+[polynomal regression]
+- https://arachnoid.com/polysolve/

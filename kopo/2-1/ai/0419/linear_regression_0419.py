@@ -1,7 +1,7 @@
-import matpoltlib.pyplot as plt
+import matplotlib.pyplot as plt
 import pandas as pd
 
-df = pd.read_csv('C:/Users/Mecha/linear_regression_0419.csv', encoding='euc_kr')
+df = pd.read_csv('C:\\Users\\Sunny\\linear_regression_0419.csv')
 df
 
 X = df.iloc[:,:-1].values
@@ -16,7 +16,7 @@ y_pred
 
 plt.scatter(X, Y, color='blue')
 plt.plot(X, y_pred, color='green')
-plr.title('Weight')
+plt.title('Weight')
 plt.xlabel('cm')
 plt.ylabel('kg')
 plt.show()

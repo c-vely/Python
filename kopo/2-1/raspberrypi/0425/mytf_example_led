@@ -1,0 +1,128 @@
+# 가위, 바위, 보에 따라 색깔 부여하기
+
+from tkinter import *
+from PIL import Image, ImageTk, ImageFilter
+import time
+import threading
+import cv2
+import random
+
+from tensorflow.keras.models import load_model
+from PIL import Image, ImageOps
+import numpy as np
+
+
+from i2c_class import read_i2c
+from i2c_class import write_i2c
+import I2C_LCD_driver
+
+RED_LED = 0b00000001
+GREEN_LED = 0b00000010
+BLUE_LED = 0b00000100
+
+textLcd = I2C_LCD_driver.lcd()
+textLcd.lcd_display_string("KOPO AISW", 1)
+textLcd.lcd_display_string("AI Ckassfucation", 2)
+
+adc = read_i2c()
+write = write_i2c()
+
+value= None
+model = load_model('keras_model.h5')
+data = np.ndarray(shape = (1, 224,224, 3), dtype = np.float32)
+size = (224, 224)
+
+def readLabels():
+    try:
+        f = open("labels.txt", 'r')
+        list_labels = []
+        while True:
+            line = f.readline()
+            if not line: break
+            getlabel = line.split(' ')
+            getlabel = getlabel[1].split('\n')
+            list_labels.append(getlabel[0])
+            #print(getlabel)
+        f.close()
+    except Exception as e :
+        print(e)
+    return list_labels
+
+def show_frame():
+    imglabel = readLabels()
+
+    ret, frame = cap.read()
+    processImage = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    recog = cv2.resize(processImage, (224, 224))
+
+    processImage = cv2.resize(processImage, (640, 480))
+    processImage = Image.fromarray(processImage)
+    processImage = ImageTk.PhotoImage(image=processImage)
+    lmain.processImage = processImage
+    lmain.configure(image=processImage)
+    recog = Image.fromarray(recog)
+    recog = ImageOps.fit(recog, size, Image.ANTIALIAS)
+    image_array = np.asarray(recog)
+    normalized_image_array = (image_array.astype(np.float32) / 127.0) - 1
+    data[0] = normalized_image_array
+    prediction = model.predict(data)
+    print(prediction)
+    obj = []
+    for i in prediction[0]:
+        v = int(float(i)*1000)/10
+        obj.append(v)
+    value.set(imglabel[int(obj.index(max(obj)))] + " " + str(max(obj)) + " %")
+    #print(int(obj.index(max(obj))), str(max(obj)))
+    
+    
+    '''
+    0 paper
+    1 scissors
+    2 rock
+    '''
+    
+    if(int(obj.index(max(obj))) == 0):
+        write.Off(GREEN_LED | BLUE_LED)
+        write.On(RED_LED)
+        textLcd = I2C_LCD_driver.lcd()
+        textLcd.lcd_display_string("AI Inference", 1)
+        textLcd.lcd_display_string("Paper:" + str(max(obj)) + " %", 2)
+    elif(int(obj.index(max(obj))) == 1):
+        write.Off(RED_LED | BLUE_LED)
+        write.On(GREEN_LED)
+        textLcd = I2C_LCD_driver.lcd()
+        textLcd.lcd_display_string("AI Inference", 1)
+        textLcd.lcd_display_string("scissors:" + str(max(obj)) + " %", 2)
+    elif(int(obj.index(max(obj))) == 2):
+        write.Off(GREEN_LED | RED_LED)
+        write.On(BLUE_LED)
+        textLcd = I2C_LCD_driver.lcd()
+        textLcd.lcd_display_string("AI Inference", 1)
+        textLcd.lcd_display_string("rock:" + str(max(obj)) + " %", 2)
+    else:
+       write.Off(RED_LED | GREEN_LED | BLUE_LED) 
+        
+        
+    #prediction = str(random.randrange(1,10))
+    #value.set(str(prediction))
+    lmain.after(1, show_frame)
+
+try:
+    root = Tk()
+    root.title('Camera')
+    root.geometry("640x520+10+10")
+
+    lmain = Label(root)
+    lmain.pack()
+    value = StringVar()
+    value.set("Text")
+    msg = Label(root, background = "yellow", textvariable = value)
+    msg.pack()
+
+    # cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture("http://raspberryAI:8090/?action=stream")
+    
+    show_frame()
+    root.mainloop()           
+except KeyboardInterrupt:
+    sys.exit()
